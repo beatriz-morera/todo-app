@@ -1,0 +1,22 @@
+.container {
+  background: linear-gradient(deepSkyBlue, white);
+  height: 100vh;
+  font-size: 20px;
+}
+.info {
+  text-align: center;
+}
+.title {
+  font-size: 70px;
+}
+.title,
+.subtitle {
+  margin: 0;
+  line-height: 80px;
+  font-family: 'Pacifico';
+  letter-spacing: 3px;
+}
+.subtitle {
+  font-size: 55px;
+  margin-bottom: 40px;
+}
