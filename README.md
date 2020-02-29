@@ -6,9 +6,9 @@ Ionic todo app
 
 - [x] ionic components
 - [x] typescript
-- [] react hooks
-- [] local storage
-- [] redux
+- [ ] react hooks
+- [ ] local storage
+- [ ] redux
 
 ## Available Scripts
 
