@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Animated } from "react-animated-css";
 import { useDispatch } from "react-redux";
 
 import { remove, done, important } from "../features/todosSlice";
@@ -18,6 +19,16 @@ interface TaskProps {
   todo: any;
 }
 
+const style = {
+  fontSize: "18px",
+  padding: "10px 15px"
+};
+const doneStyle = {
+  fontSize: "18px",
+  padding: "10px 15px",
+  textDecoration: "line-through"
+};
+
 const Task: React.FC<TaskProps> = ({ todo }) => {
   const dispatch = useDispatch();
 
@@ -35,42 +46,48 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
   ]);
 
   return (
-    <IonItemSliding>
-      {todo.isCompleted ? null : (
-        <IonItemOptions side="start">
-          <IonItemOption color="success" expandable>
+    <Animated
+      animationIn="slideInUp"
+      animationInDuration={500}
+      animationOut="fadeOut"
+      isVisible
+    >
+      <IonItemSliding>
+        {todo.isCompleted ? null : (
+          <IonItemOptions side="start" onClick={doneTaskHandler}>
+            <IonItemOption color="success" expandable>
+              <IonIcon slot="icon-only" icon={checkmarkDone} />
+            </IonItemOption>
+          </IonItemOptions>
+        )}
+
+        <IonItem lines="full">
+          {todo.isCompleted ? (
+            <IonIcon icon={checkmarkDone} slot="start" color="success" />
+          ) : (
             <IonIcon
-              slot="icon-only"
-              icon={checkmarkDone}
-              onClick={doneTaskHandler}
+              icon={todo.isImportant ? star : starOutline}
+              slot="start"
+              color={todo.isImportant ? "warning" : "medium"}
+              onClick={importantTaskHandler}
             />
+          )}
+
+          <IonLabel
+            className="ion-text-wrap"
+            style={todo.isCompleted ? doneStyle : style}
+          >
+            {todo.text}
+          </IonLabel>
+          <IonReorder slot="end" />
+        </IonItem>
+        <IonItemOptions side="end" onClick={removeTaskHandler}>
+          <IonItemOption color="danger" expandable>
+            <IonIcon slot="icon-only" icon={trash} />
           </IonItemOption>
         </IonItemOptions>
-      )}
-
-      <IonItem lines="full">
-        <IonIcon
-          icon={todo.isImportant ? star : starOutline}
-          size="small"
-          slot="start"
-          color={todo.isImportant ? "warning" : "medium"}
-          onClick={importantTaskHandler}
-        />
-
-        <IonLabel
-          className="ion-text-wrap"
-          style={{ fontSize: "18px", padding: "10px 15px" }}
-        >
-          {todo.text}
-        </IonLabel>
-        <IonReorder slot="end" />
-      </IonItem>
-      <IonItemOptions side="end">
-        <IonItemOption color="danger" expandable>
-          <IonIcon slot="icon-only" icon={trash} onClick={removeTaskHandler} />
-        </IonItemOption>
-      </IonItemOptions>
-    </IonItemSliding>
+      </IonItemSliding>
+    </Animated>
   );
 };
 
