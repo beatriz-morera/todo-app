@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IonContent, IonImg, IonPage, IonButton } from '@ionic/react';
 import logo from '../assets/sunshine-emoji.png';
 import classes from './Home.module.css';
@@ -13,9 +14,11 @@ const Welcome: React.FC = () => {
             <p className={classes.title}>Hello</p>
             <p className={classes.subtitle}> Sunshine!</p>
             <p>Let's get things done today</p>
-            <IonButton shape="round" size="large" color="warning">
-              GO
-            </IonButton>
+            <Link to="/list">
+              <IonButton shape="round" size="large" color="warning">
+                GO
+              </IonButton>
+            </Link>
           </div>
         </main>
       </IonContent>
