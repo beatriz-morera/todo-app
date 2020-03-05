@@ -5,6 +5,7 @@ import {
   selectStatusList,
   setStatus
 } from "../features/statusSlice";
+import { selectNumOfTodos } from "../features/selectors";
 
 import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/react";
 
@@ -12,9 +13,14 @@ const StatusSelector: React.FC = () => {
   const dispatch = useDispatch();
   const statusList = useSelector(selectStatusList);
   const status = useSelector(selectStatus);
+  const count = useSelector(selectNumOfTodos);
+
+  //const todosLength = (todos, value) => todos.map(t => t.value).length;
 
   const segmentValueHandler = useCallback(
-    ev => dispatch(setStatus(ev.detail.value)),
+    ev => {
+      dispatch(setStatus(ev.detail.value));
+    },
     [dispatch]
   );
 
@@ -22,7 +28,9 @@ const StatusSelector: React.FC = () => {
     <IonSegment value={status} onIonChange={segmentValueHandler}>
       {statusList.map(({ value, title }) => (
         <IonSegmentButton key={value} value={value}>
-          <IonLabel color="dark">{title}</IonLabel>
+          <IonLabel>
+            {title} {count[value] > 0 && count[value]}
+          </IonLabel>
         </IonSegmentButton>
       ))}
     </IonSegment>

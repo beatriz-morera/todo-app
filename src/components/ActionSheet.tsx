@@ -45,21 +45,22 @@ const ActionSheet: React.FC<ActionSheetProps> = ({ value, onFinish }) => {
       <div>
         <IonItem>
           <IonButton
+            size="large"
             disabled={!task}
             fill="clear"
             slot="end"
-            style={{ marginTop: "-5px" }}
+            color="secondary"
             onClick={finishHandler}
           >
-            <IonIcon slot="icon-only" icon={addCircleOutline} />
+            <IonIcon slot="icon-only" icon={addCircleOutline} size="large" />
           </IonButton>
           <IonTextarea
             ref={textRef}
             placeholder="Type a new task"
-            required
             value={task}
             onIonInput={inputHandler}
             autofocus={true}
+            style={{ paddingTop: "15px" }}
           />
         </IonItem>
       </div>

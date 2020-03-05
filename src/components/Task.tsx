@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { Animated } from "react-animated-css";
 import { useDispatch } from "react-redux";
 
 import { remove, done, important } from "../features/todosSlice";
@@ -13,7 +12,13 @@ import {
   IonItemOptions,
   IonItemOption
 } from "@ionic/react";
-import { trash, checkmarkDone, starOutline, star } from "ionicons/icons";
+import {
+  trash,
+  checkmarkDoneSharp,
+  starOutline,
+  star,
+  happyOutline
+} from "ionicons/icons";
 
 interface TaskProps {
   todo: any;
@@ -46,48 +51,45 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
   ]);
 
   return (
-    <Animated
-      animationIn="slideInUp"
-      animationInDuration={500}
-      animationOut="fadeOut"
-      isVisible
-    >
-      <IonItemSliding>
-        {todo.isCompleted ? null : (
-          <IonItemOptions side="start" onClick={doneTaskHandler}>
-            <IonItemOption color="success" expandable>
-              <IonIcon slot="icon-only" icon={checkmarkDone} />
-            </IonItemOption>
-          </IonItemOptions>
-        )}
-
-        <IonItem lines="full">
-          {todo.isCompleted ? (
-            <IonIcon icon={checkmarkDone} slot="start" color="success" />
-          ) : (
-            <IonIcon
-              icon={todo.isImportant ? star : starOutline}
-              slot="start"
-              color={todo.isImportant ? "warning" : "medium"}
-              onClick={importantTaskHandler}
-            />
-          )}
-
-          <IonLabel
-            className="ion-text-wrap"
-            style={todo.isCompleted ? doneStyle : style}
-          >
-            {todo.text}
-          </IonLabel>
-          <IonReorder slot="end" />
-        </IonItem>
-        <IonItemOptions side="end" onClick={removeTaskHandler}>
-          <IonItemOption color="danger" expandable>
-            <IonIcon slot="icon-only" icon={trash} />
+    <IonItemSliding>
+      {todo.isCompleted ? null : (
+        <IonItemOptions side="start" onClick={doneTaskHandler}>
+          <IonItemOption color="success" expandable>
+            <IonIcon slot="icon-only" icon={checkmarkDoneSharp} />
           </IonItemOption>
         </IonItemOptions>
-      </IonItemSliding>
-    </Animated>
+      )}
+
+      <IonItem lines="full">
+        {todo.isCompleted ? (
+          <IonIcon icon={checkmarkDoneSharp} slot="start" color="success" />
+        ) : (
+          <IonIcon
+            icon={todo.isImportant ? star : starOutline}
+            slot="start"
+            color={todo.isImportant ? "warning" : "medium"}
+            onClick={importantTaskHandler}
+          />
+        )}
+
+        <IonLabel
+          className="ion-text-wrap"
+          style={todo.isCompleted ? doneStyle : style}
+        >
+          {todo.text}
+        </IonLabel>
+        {todo.isCompleted ? (
+          <IonIcon icon={happyOutline} slot="end" />
+        ) : (
+          <IonReorder slot="end" />
+        )}
+      </IonItem>
+      <IonItemOptions side="end" onClick={removeTaskHandler}>
+        <IonItemOption color="danger" expandable>
+          <IonIcon slot="icon-only" icon={trash} />
+        </IonItemOption>
+      </IonItemOptions>
+    </IonItemSliding>
   );
 };
 

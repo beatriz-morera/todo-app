@@ -15,8 +15,6 @@ import { selectActiveTodos } from "../features/selectors";
 
 import { addNew, selectAllDone } from "../features/todosSlice";
 
-import classes from "./List.module.css";
-
 import Header from "../components/Header";
 import ActionSheet from "../components/ActionSheet";
 import Task from "../components/Task";
@@ -53,7 +51,7 @@ const List: React.FC = () => {
         {showAllDone ? (
           <Success />
         ) : (
-          <main className={classes.container}>
+          <main className="background">
             <Header />
             <StatusSelector />
 
@@ -73,8 +71,8 @@ const List: React.FC = () => {
                 onClick={actionSheetHandler}
                 style={{ position: "fixed" }}
               >
-                <IonFabButton>
-                  <IonIcon icon={add} />
+                <IonFabButton color="secondary">
+                  <IonIcon icon={add} size="large" />
                 </IonFabButton>
               </IonFab>
             )}
