@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   IonContent,
   IonPage,
@@ -11,11 +13,12 @@ import {
 import { ItemReorderEventDetail } from "@ionic/core";
 import { add } from "ionicons/icons";
 
-import { selectActiveTodos } from "../features/selectors";
-
-import { addNew, selectAllDone } from "../features/todosSlice";
-
-import { selectMode } from "../features/colorModeSlice";
+import {
+  selectActiveTodos,
+  selectAllDone,
+  selectMode
+} from "../store/selectors";
+import * as todos from "../store/features/todosSlice";
 
 import Header from "../components/Header";
 import ActionSheet from "../components/ActionSheet";
@@ -25,26 +28,25 @@ import Success from "../components/Success";
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(selectActiveTodos);
+  const selectedTodos = useSelector(selectActiveTodos);
   const showAllDone = useSelector(selectAllDone);
-
   const darkMode = useSelector(selectMode);
 
   const [active, setActive] = useState(false);
 
+  const actionSheetHandler = useCallback(() => {
+    setActive(true);
+  }, []);
+
   const addTaskHandler = useCallback(
     text => {
       if (text && text.trim() !== "") {
-        dispatch(addNew(text));
+        dispatch(todos.addNew(text));
       }
       setActive(false);
     },
     [dispatch]
   );
-
-  const actionSheetHandler = useCallback(() => {
-    setActive(true);
-  }, []);
 
   const doReorder = (event: CustomEvent<ItemReorderEventDetail>) =>
     event.detail.complete();
@@ -60,7 +62,7 @@ const List: React.FC = () => {
             <StatusSelector />
 
             <IonReorderGroup disabled={false} onIonItemReorder={doReorder}>
-              {todos.map(todo => (
+              {selectedTodos.map(todo => (
                 <Task key={todo.id} todo={todo} />
               ))}
             </IonReorderGroup>

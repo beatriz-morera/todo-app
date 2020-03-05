@@ -3,17 +3,19 @@ import { Animated } from "react-animated-css";
 import { useSelector } from "react-redux";
 import { IonImg, IonButton, IonContent } from "@ionic/react";
 import { useDispatch } from "react-redux";
-import { closeAllDone } from "../features/todosSlice";
 
 import classes from "./Success.module.css";
 import logo from "../assets/happy-emoji.png";
 
-import { selectMode } from "../features/colorModeSlice";
+import { selectMode } from "../store/selectors";
+import * as todos from "../store/features/todosSlice";
 
 const Success: React.FC = () => {
   const darkMode = useSelector(selectMode);
   const dispatch = useDispatch();
-  const closeHandler = useCallback(() => dispatch(closeAllDone()), [dispatch]);
+  const closeHandler = useCallback(() => dispatch(todos.closeAllDone(null)), [
+    dispatch
+  ]);
 
   return (
     <IonContent color={darkMode && "dark"}>

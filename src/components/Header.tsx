@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import Clock from "react-live-clock";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,8 @@ import { sunnyOutline, moonOutline } from "ionicons/icons";
 
 import classes from "./Header.module.css";
 
-import { setMode, selectMode } from "../features/colorModeSlice";
+import { selectMode } from "../store/selectors";
+import * as mode from "../store/features/darkModeSlice";
 
 const Header: React.FC = () => {
   const days = [
@@ -43,7 +44,7 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
 
   const colorModeHandler = useCallback(() => {
-    dispatch(setMode());
+    dispatch(mode.setMode(null));
   }, [dispatch]);
 
   return (

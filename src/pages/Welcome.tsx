@@ -1,12 +1,15 @@
 import React from "react";
-import { Animated } from "react-animated-css";
+
 import { useSelector } from "react-redux";
+
+import { Animated } from "react-animated-css";
 import { Link } from "react-router-dom";
 import { IonContent, IonImg, IonPage, IonButton } from "@ionic/react";
+
 import logo from "../assets/sun-emoji.png";
 import classes from "./Welcome.module.css";
 
-import { selectMode } from "../features/colorModeSlice";
+import { selectMode } from "../store/selectors";
 
 const Welcome: React.FC = () => {
   const darkMode = useSelector(selectMode);
@@ -15,7 +18,7 @@ const Welcome: React.FC = () => {
     <IonPage>
       <IonContent color={darkMode && "dark"}>
         <main className={darkMode ? "background-dark-mode" : "background"}>
-          <Animated animationIn="zoomInDown" animationOut="fadeIn" isVisible>
+          <Animated animationIn="zoomInDown" animationOut="fadeOut" isVisible>
             <IonImg src={logo} />
             <div className={classes.info}>
               <p className={classes.title}>Hello</p>

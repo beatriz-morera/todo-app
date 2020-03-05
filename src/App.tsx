@@ -1,7 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+
 import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactHashRouter } from "@ionic/react-router";
+
 import Welcome from "./pages/Welcome";
 import List from "./pages/List";
 
@@ -13,14 +15,6 @@ import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 
-/* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
 /* Theme variables */
 import "./theme/variables.css";
 import "./theme/background.css";
@@ -28,7 +22,7 @@ import "./theme/background.css";
 const App: React.FC = () => (
   <IonApp>
     <IonReactHashRouter>
-      <IonRouterOutlet>
+      <IonRouterOutlet mode="md">
         <Route path="/welcome" component={Welcome} exact={true} />
         <Route path="/list" component={List} exact={true} />
         <Route
@@ -42,24 +36,3 @@ const App: React.FC = () => (
 );
 
 export default App;
-
-/*
-<IonTabs>
-
-<IonTabBar slot="bottom">
-          <IonTabButton tab="welcome" href="/welcome">
-            <IonIcon icon={triangle} />
-            <IonLabel> Welcome</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="list" href="/list">
-            <IonIcon icon={ellipse} />
-            <IonLabel>List</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-
-      */

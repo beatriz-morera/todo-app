@@ -1,21 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
+import Todo from "../../models/todo";
 
 const newId = () =>
   Math.random()
     .toString()
     .replace(".", "");
 
-const newTodo = text => ({
+const newTodo = (text: string): Todo => ({
   id: newId(),
   text,
   isCompleted: false,
   isImportant: false
 });
 
-export const slice = createSlice({
+export interface State {
+  list: Todo[];
+  showAllDone: boolean;
+}
+
+const slice = createSlice<State, SliceCaseReducers<State>>({
   name: "todos",
   initialState: {
-    list: [newTodo("First task of the day")],
+    list: [],
     showAllDone: false
   },
   reducers: {
@@ -48,8 +54,9 @@ export const slice = createSlice({
   }
 });
 
-export const selectTodos = state => state.todos.list;
-export const selectAllDone = state => state.todos.showAllDone;
+export const selectTodos = (state: State) => state.list;
+export const selectAllDone = (state: State) => state.showAllDone;
+
 export const { addNew, remove, done, important, closeAllDone } = slice.actions;
 
-export default slice.reducer;
+export const reducer = slice.reducer;

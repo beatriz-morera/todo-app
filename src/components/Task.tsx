@@ -1,8 +1,9 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { remove, done, important } from "../features/todosSlice";
-import { selectMode } from "../features/colorModeSlice";
+import { remove, done, important } from "../store/features/todosSlice";
+import { selectMode } from "../store/features/darkModeSlice";
+import Todo from "../models/todo";
 
 import {
   IonIcon,
@@ -21,10 +22,6 @@ import {
   happyOutline
 } from "ionicons/icons";
 
-interface TaskProps {
-  todo: any;
-}
-
 const style = {
   fontSize: "18px",
   padding: "10px 15px"
@@ -34,6 +31,10 @@ const doneStyle = {
   padding: "10px 15px",
   textDecoration: "line-through"
 };
+
+interface TaskProps {
+  todo: Todo;
+}
 
 const Task: React.FC<TaskProps> = ({ todo }) => {
   const dispatch = useDispatch();
