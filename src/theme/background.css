@@ -1,12 +1,10 @@
-:root {
-  --background-color: linear-gradient(#3dc2ff, white);
-}
-
-.dark-mode {
-  --background-color: linear-gradient(#6a64ff, black);
-}
-.background {
-  background: var(--background-color);
+.background,
+.background-dark-mode {
+  background: linear-gradient(#3dc2ff, white);
   height: 100vh;
   font-size: 20px;
+}
+
+.background-dark-mode {
+  background: linear-gradient(#4854e0, black);
 }

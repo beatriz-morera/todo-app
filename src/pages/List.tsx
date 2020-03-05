@@ -15,6 +15,8 @@ import { selectActiveTodos } from "../features/selectors";
 
 import { addNew, selectAllDone } from "../features/todosSlice";
 
+import { selectMode } from "../features/colorModeSlice";
+
 import Header from "../components/Header";
 import ActionSheet from "../components/ActionSheet";
 import Task from "../components/Task";
@@ -25,6 +27,8 @@ const List: React.FC = () => {
   const dispatch = useDispatch();
   const todos = useSelector(selectActiveTodos);
   const showAllDone = useSelector(selectAllDone);
+
+  const darkMode = useSelector(selectMode);
 
   const [active, setActive] = useState(false);
 
@@ -47,11 +51,11 @@ const List: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent>
+      <IonContent color={darkMode && "dark"}>
         {showAllDone ? (
           <Success />
         ) : (
-          <main className="background">
+          <main className={darkMode ? "background-dark-mode" : "background"}>
             <Header />
             <StatusSelector />
 
@@ -71,7 +75,7 @@ const List: React.FC = () => {
                 onClick={actionSheetHandler}
                 style={{ position: "fixed" }}
               >
-                <IonFabButton color="secondary">
+                <IonFabButton color={darkMode ? "tertiary" : "secondary"}>
                   <IonIcon icon={add} size="large" />
                 </IonFabButton>
               </IonFab>

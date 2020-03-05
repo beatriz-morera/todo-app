@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { remove, done, important } from "../features/todosSlice";
+import { selectMode } from "../features/colorModeSlice";
 
 import {
   IonIcon,
@@ -36,6 +37,7 @@ const doneStyle = {
 
 const Task: React.FC<TaskProps> = ({ todo }) => {
   const dispatch = useDispatch();
+  const darkMode = useSelector(selectMode);
 
   const removeTaskHandler = useCallback(() => dispatch(remove(todo)), [
     dispatch,
@@ -60,7 +62,7 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
         </IonItemOptions>
       )}
 
-      <IonItem lines="full">
+      <IonItem lines="full" color={darkMode ? "dark" : null}>
         {todo.isCompleted ? (
           <IonIcon icon={checkmarkDoneSharp} slot="start" color="success" />
         ) : (

@@ -1,8 +1,11 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { IonItem, IonTextarea, IonIcon, IonButton } from "@ionic/react";
 import { addCircleOutline } from "ionicons/icons";
 
 import classes from "./ActionSheet.module.css";
+
+import { selectMode } from "../features/colorModeSlice";
 
 interface ActionSheetProps {
   value?: string;
@@ -10,6 +13,7 @@ interface ActionSheetProps {
 }
 
 const ActionSheet: React.FC<ActionSheetProps> = ({ value, onFinish }) => {
+  const darkMode = useSelector(selectMode);
   const [task, setTask] = useState(value);
   const textRef = useRef<HTMLIonTextareaElement>();
 
@@ -43,13 +47,13 @@ const ActionSheet: React.FC<ActionSheetProps> = ({ value, onFinish }) => {
     <section className={classes.container}>
       <div className={classes.transparent} onClick={cancelHandler}></div>
       <div>
-        <IonItem>
+        <IonItem color={darkMode && "dark"}>
           <IonButton
             size="large"
             disabled={!task}
             fill="clear"
             slot="end"
-            color="secondary"
+            color={darkMode ? "tertiary" : "secondary"}
             onClick={finishHandler}
           >
             <IonIcon slot="icon-only" icon={addCircleOutline} size="large" />

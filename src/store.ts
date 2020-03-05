@@ -3,11 +3,13 @@ import persistState from "redux-localstorage";
 
 import todos from "./features/todosSlice";
 import status from "./features/statusSlice";
+import mode from "./features/colorModeSlice";
 
 export default configureStore({
   reducer: {
     todos,
-    status
+    status,
+    mode
   },
   enhancers: [persistState() as StoreEnhancer]
 });

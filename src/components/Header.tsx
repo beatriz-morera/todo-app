@@ -1,41 +1,64 @@
-import React from 'react';
-import Clock from 'react-live-clock';
+import React, { useState, useCallback } from "react";
+import Clock from "react-live-clock";
 
-import { IonIcon } from '@ionic/react';
-import { sunnyOutline } from 'ionicons/icons';
+import { useDispatch, useSelector } from "react-redux";
 
-import classes from './Header.module.css';
+import { IonIcon } from "@ionic/react";
+import { sunnyOutline, moonOutline } from "ionicons/icons";
+
+import classes from "./Header.module.css";
+
+import { setMode, selectMode } from "../features/colorModeSlice";
 
 const Header: React.FC = () => {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
   const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
   ];
   let date = new Date();
   let day = days[date.getDay()];
   let monthDay = date.getDate();
   let month = months[date.getMonth()];
 
+  const darkMode = useSelector(selectMode);
+  const dispatch = useDispatch();
+
+  const colorModeHandler = useCallback(() => {
+    dispatch(setMode());
+  }, [dispatch]);
+
   return (
     <section className={classes.container}>
       <div className={classes.titleContainer}>
         <h1 className={classes.title}>My Day</h1>
-        <IonIcon icon={sunnyOutline} size="large" />
+        <IonIcon
+          icon={darkMode ? moonOutline : sunnyOutline}
+          size="large"
+          onClick={colorModeHandler}
+        />
       </div>
       <div className={classes.titleContainer}>
-        <p>{day + ' ' + monthDay + ' ' + month}</p>
-        <Clock format={'h:mm A'} />
+        <p>{day + " " + monthDay + " " + month}</p>
+        <Clock format={"h:mm A"} />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { Animated } from "react-animated-css";
+import { useSelector } from "react-redux";
 import { IonImg, IonButton, IonContent } from "@ionic/react";
 import { useDispatch } from "react-redux";
 import { closeAllDone } from "../features/todosSlice";
@@ -7,13 +8,16 @@ import { closeAllDone } from "../features/todosSlice";
 import classes from "./Success.module.css";
 import logo from "../assets/happy-emoji.png";
 
+import { selectMode } from "../features/colorModeSlice";
+
 const Success: React.FC = () => {
+  const darkMode = useSelector(selectMode);
   const dispatch = useDispatch();
   const closeHandler = useCallback(() => dispatch(closeAllDone()), [dispatch]);
 
   return (
-    <IonContent>
-      <main className="background">
+    <IonContent color={darkMode && "dark"}>
+      <main className={darkMode ? "background-dark-mode" : "background"}>
         <Animated animationIn="zoomInDown" animationOut="fadeIn" isVisible>
           <IonImg src={logo} />
           <div className={classes.info}>
