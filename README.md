@@ -9,6 +9,7 @@ Ionic todo app
 - [x] react hooks
 - [x] local storage
 - [x] redux
+- [x] dark mode
 
 ## Available Scripts
 
