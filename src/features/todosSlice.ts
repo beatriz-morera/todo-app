@@ -15,7 +15,7 @@ const newTodo = text => ({
 export const slice = createSlice({
   name: "todos",
   initialState: {
-    list: [newTodo("helo")],
+    list: [newTodo("First task of the day")],
     showAllDone: false
   },
   reducers: {

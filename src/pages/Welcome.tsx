@@ -3,7 +3,7 @@ import { Animated } from "react-animated-css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { IonContent, IonImg, IonPage, IonButton } from "@ionic/react";
-import logo from "../assets/sunshine-emoji.png";
+import logo from "../assets/sun-emoji.png";
 import classes from "./Welcome.module.css";
 
 import { selectMode } from "../features/colorModeSlice";

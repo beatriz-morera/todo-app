@@ -62,7 +62,7 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
         </IonItemOptions>
       )}
 
-      <IonItem lines="full" color={darkMode ? "dark" : null}>
+      <IonItem lines="full" color={darkMode ? "dark" : "light"}>
         {todo.isCompleted ? (
           <IonIcon icon={checkmarkDoneSharp} slot="start" color="success" />
         ) : (
