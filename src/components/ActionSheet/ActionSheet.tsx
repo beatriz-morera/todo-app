@@ -47,7 +47,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({ value, onFinish }) => {
     <section className={classes.container}>
       <div className={classes.transparent} onClick={cancelHandler}></div>
       <div>
-        <IonItem color={darkMode ? "dark" : null}>
+        <IonItem color={darkMode ? "dark" : "null"}>
           <IonButton
             size="large"
             disabled={!task}
