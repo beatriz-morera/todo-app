@@ -8,7 +8,7 @@ Ionic todo app
 - [x] typescript
 - [x] react hooks
 - [x] local storage
-- [x] redux
+- [x] redux(toolkit)
 - [x] dark mode
 
 ## Available Scripts
