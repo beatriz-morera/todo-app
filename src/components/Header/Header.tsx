@@ -8,8 +8,8 @@ import { sunnyOutline, moonOutline } from "ionicons/icons";
 
 import classes from "./Header.module.css";
 
-import { selectMode } from "../store/selectors";
-import * as mode from "../store/features/darkModeSlice";
+import { selectMode } from "../../store/selectors";
+import * as mode from "../../store/features/darkModeSlice";
 
 const Header: React.FC = () => {
   const days = [
@@ -52,6 +52,7 @@ const Header: React.FC = () => {
       <div className={classes.titleContainer}>
         <h1 className={classes.title}>My Day</h1>
         <IonIcon
+          data-testid="toggle-mode"
           icon={darkMode ? moonOutline : sunnyOutline}
           size="large"
           onClick={colorModeHandler}
@@ -59,7 +60,7 @@ const Header: React.FC = () => {
       </div>
       <div className={classes.titleContainer}>
         <p>{day + " " + monthDay + " " + month}</p>
-        <Clock format={"h:mm A"} />
+        <Clock format={"h:mm A"} data-testid="clock" />
       </div>
     </section>
   );

@@ -56,7 +56,11 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
   return (
     <IonItemSliding>
       {todo.isCompleted ? null : (
-        <IonItemOptions side="start" onClick={doneTaskHandler}>
+        <IonItemOptions
+          side="start"
+          onClick={doneTaskHandler}
+          data-testid="complete"
+        >
           <IonItemOption color="success" expandable>
             <IonIcon slot="icon-only" icon={checkmarkDoneSharp} />
           </IonItemOption>
@@ -72,6 +76,7 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
             slot="start"
             color={todo.isImportant ? "warning" : "medium"}
             onClick={importantTaskHandler}
+            data-testid="important"
           />
         )}
 
@@ -87,7 +92,11 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
           <IonReorder slot="end" />
         )}
       </IonItem>
-      <IonItemOptions side="end" onClick={removeTaskHandler}>
+      <IonItemOptions
+        side="end"
+        onClick={removeTaskHandler}
+        data-testid="delete"
+      >
         <IonItemOption color="danger" expandable>
           <IonIcon slot="icon-only" icon={trash} />
         </IonItemOption>

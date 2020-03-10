@@ -1,14 +1,13 @@
 import React, { useCallback } from "react";
 import { Animated } from "react-animated-css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IonImg, IonButton, IonContent } from "@ionic/react";
-import { useDispatch } from "react-redux";
 
 import classes from "./Success.module.css";
-import logo from "../assets/happy-emoji.png";
+import logo from "../../assets/happy-emoji.png";
 
-import { selectMode } from "../store/selectors";
-import * as todos from "../store/features/todosSlice";
+import { selectMode } from "../../store/selectors";
+import * as todos from "../../store/features/todosSlice";
 
 const Success: React.FC = () => {
   const darkMode = useSelector(selectMode);
@@ -27,6 +26,7 @@ const Success: React.FC = () => {
             <p className={classes.subtitle}> awesome!</p>
             <p>You completed all your tasks</p>
             <IonButton
+              data-testid="close"
               shape="round"
               size="large"
               color="warning"

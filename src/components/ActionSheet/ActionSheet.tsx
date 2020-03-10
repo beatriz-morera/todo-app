@@ -5,7 +5,7 @@ import { addCircleOutline } from "ionicons/icons";
 
 import classes from "./ActionSheet.module.css";
 
-import { selectMode } from "../store/selectors";
+import { selectMode } from "../../store/selectors";
 
 interface ActionSheetProps {
   value?: string;

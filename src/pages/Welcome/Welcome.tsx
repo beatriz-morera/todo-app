@@ -6,10 +6,10 @@ import { Animated } from "react-animated-css";
 import { Link } from "react-router-dom";
 import { IonContent, IonImg, IonPage, IonButton } from "@ionic/react";
 
-import logo from "../assets/sun-emoji.png";
+import logo from "../../assets/sun-emoji.png";
 import classes from "./Welcome.module.css";
 
-import { selectMode } from "../store/selectors";
+import { selectMode } from "../../store/selectors";
 
 const Welcome: React.FC = () => {
   const darkMode = useSelector(selectMode);
@@ -25,7 +25,12 @@ const Welcome: React.FC = () => {
               <p className={classes.subtitle}> Sunshine!</p>
               <p>Let's get things done today</p>
               <Link to="/list">
-                <IonButton shape="round" size="large" color="warning">
+                <IonButton
+                  shape="round"
+                  size="large"
+                  color="warning"
+                  data-testid="start"
+                >
                   GO
                 </IonButton>
               </Link>
