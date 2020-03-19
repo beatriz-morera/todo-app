@@ -1,9 +1,8 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "name": "Today Todos",
   "icons": [
     {
-      "src": "assets/icon/favicon.png",
+      "src": "assets/icon/icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
@@ -17,5 +16,5 @@
   "start_url": ".",
   "display": "fullscreen",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#3dc2ff"
 }

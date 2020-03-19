@@ -11,6 +11,11 @@ Ionic todo app
 - [x] redux(toolkit)
 - [x] dark mode
 
+# Demo Page
+
+You can check the project running at:
+[https://today-todos.netlify.com/](https://today-todos.netlify.com/)
+
 ## Available Scripts
 
 In the project directory, you can run:
