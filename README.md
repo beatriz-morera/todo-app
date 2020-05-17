@@ -1,6 +1,6 @@
-# todo-app
+# Today Todos
 
-Ionic todo app
+Ionic todo list PWA **Mobile Only**
 
 **features**
 
