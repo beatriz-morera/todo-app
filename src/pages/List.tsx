@@ -48,8 +48,7 @@ const List: React.FC = () => {
     [dispatch]
   );
 
-  const doReorder = (event: CustomEvent<ItemReorderEventDetail>) =>
-    event.detail.complete();
+  const doReorder = (event: CustomEvent<ItemReorderEventDetail>) => dispatch(todos.reorderList(event.detail.complete(selectedTodos)));
 
   return (
     <IonPage>

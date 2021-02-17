@@ -8,3 +8,8 @@
 .background-dark-mode {
   background: linear-gradient(#4854e0, black);
 }
+
+
+.ion-text-wrap.sc-ion-label-md-h{
+  outline: none;
+}

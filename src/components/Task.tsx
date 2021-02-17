@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { remove, done, important } from "../store/features/todosSlice";
+import { edit, remove, done, important } from "../store/features/todosSlice";
 import { selectMode } from "../store/features/darkModeSlice";
 import Todo from "../models/todo";
 
@@ -40,21 +40,30 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
   const dispatch = useDispatch();
   const darkMode = useSelector(selectMode);
 
+  const editTaskHandler = useCallback((newText: string) =>{
+    if(newText.length) dispatch(edit({todo, newText}))
+  }, [
+    dispatch,
+    todo
+  ]);
+
   const removeTaskHandler = useCallback(() => dispatch(remove(todo)), [
     dispatch,
     todo
   ]);
+
   const doneTaskHandler = useCallback(() => dispatch(done(todo)), [
     dispatch,
     todo
   ]);
+
   const importantTaskHandler = useCallback(() => dispatch(important(todo)), [
     dispatch,
     todo
   ]);
 
   return (
-    <IonItemSliding>
+    <IonItemSliding >
       {todo.isCompleted ? null : (
         <IonItemOptions
           side="start"
@@ -83,13 +92,15 @@ const Task: React.FC<TaskProps> = ({ todo }) => {
         <IonLabel
           className="ion-text-wrap"
           style={todo.isCompleted ? doneStyle : style}
+          contentEditable
+          onBlur={(ev) => editTaskHandler((ev.target as any).innerHTML)}
         >
           {todo.text}
         </IonLabel>
         {todo.isCompleted ? (
           <IonIcon icon={happyOutline} slot="end" />
         ) : (
-          <IonReorder slot="end" />
+          <IonReorder slot="end"/>
         )}
       </IonItem>
       <IonItemOptions
